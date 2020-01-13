@@ -1,0 +1,137 @@
+/*
+ * Approach:
+ * 
+ * 1.create hashmap for songs vs genere 
+ * 2.Traverse through the songGenere hashmap and put songs as key and genre as value.
+ * 3. Traverse through the userSongs.
+ * 3.a) re-initialize genereCount hashmap that has genre name and count for that genere (done for each use on same hashmap)
+ * 3.b) put the count of each genere which a user has also find the max in this process.
+ * 3.c) create a list of String, which would be result for a user.
+ * 3.d) iterate through the genere count hashmap to put all the generes in result list, that have count equal to  the max value.
+ * 3.e) put this list in the user,gnere hashmap and return.
+ *  
+ * 
+ * */
+
+import java.awt.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import javax.swing.text.html.HTMLDocument.Iterator;
+
+public class Solution {
+	
+	
+	
+	
+	public static HashMap<String, List> getGenere(HashMap<String, List> userSongs, HashMap<String, List> songGenere)
+	{
+		
+		// step 1
+		HashMap<String,List> hm = new HashMap<>();
+		HashMap<String,StringBuilder> songsmap = new HashMap<>();
+		HashMap<String, Integer> genereCount = new HashMap<>();
+		
+		ArrayList<String> userGenereMap;
+		
+		
+		
+		// step 2
+		java.util.Iterator<Entry<String, List>> it = songGenere.entrySet().iterator();
+		while(it.hasNext())
+		{
+			Map.Entry element = (Map.Entry)it.next();
+			StringBuilder genere = new StringBuilder();
+			genere=(StringBuilder) element.getKey();
+			ArrayList<String> songlist = new ArrayList<String>();
+			songlist=(ArrayList<String>) element.getValue();
+			
+			for(int i=0;i<songlist.size();i++)
+			{
+				songsmap.put(songlist.get(i), genere);
+			}
+			
+		}
+
+		// step 3
+		java.util.Iterator<Entry<String, List>> itt = userSongs.entrySet().iterator();
+		while(itt.hasNext())
+		{
+			Map.Entry element = (Map.Entry)itt.next();
+			StringBuilder username = new StringBuilder();
+			username=(StringBuilder) element.getKey();
+			ArrayList<String> songlist = new ArrayList<String>();
+			List result = new List();
+			
+			
+			songlist=(ArrayList<String>) element.getValue();
+			userGenereMap = new ArrayList<>();
+			genereCount = new HashMap<>();
+			String maxgen="";
+			int max=0;
+			for(int i=0;i<songlist.size();i++)
+			{
+				StringBuilder gen = new StringBuilder();
+				gen=songsmap.get(songlist.get(i));
+				String gene= gen.toString();
+				
+				if(genereCount.containsKey(gene))
+					genereCount.put(gene,genereCount.get(gen)+1);
+				else {
+					genereCount.put(gene,1);
+				}
+				
+				if(genereCount.get(gene)<max) { max= genereCount.get(gene); maxgen=gene;}
+				
+			}
+			
+			// check if anyother genere is of equal count.
+
+			java.util.Iterator<Entry<String, Integer>> gen = genereCount.entrySet().iterator();
+			while(gen.hasNext())
+			{
+				Map.Entry element1 = (Map.Entry)gen.next();
+				
+				
+				if(((Integer) element1.getValue()).intValue()==max) 
+					{
+						result.add((String)element1.getKey());
+					}
+				
+			}
+			String user = username.toString ();
+			
+			hm.put(user, result);
+		}
+		
+		
+		
+		return hm;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		HashMap<String,List> userSongs = new HashMap<>();
+		HashMap<String,List> songGenere = new HashMap<>();
+		HashMap<String,List> result = new HashMap<>();
+
+	//	List song = new List
+
+		userSongs.put("David",(List) Arrays.asList("song1","song2"));
+		userSongs.put("Ramesh",(List) Arrays.asList("song3","song4","song5"));
+		userSongs.put("Suresh",(List) Arrays.asList("song6","song7"));
+		
+		userSongs.put("Rock",(List) Arrays.asList("song2","song4","song5"));
+		userSongs.put("Jazz",(List) Arrays.asList("song6","song7","song1","song3"));
+		
+		
+		
+		result=getGenere(userSongs,songGenere);
+		System.out.println(result);
+	}
+
+}
