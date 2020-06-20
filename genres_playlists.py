@@ -6,10 +6,53 @@
 
 // Your code here along with comments explaining your approach
 """
+from collections import defaultdict
+
+#Method1
+"""
+1. Using the songGenres map, create a reverse mapping of genre to song
+2. For each user from the user song mapping
+    - Create a mapping of genre and count for that user
+        - Process the songs 
+            - update the max variable based on count of genre of the song(from the map)
+        - Process the genreCount map for each user and update the result based on comparing with max frequency
+"""
+def fav_genres(userSongs,songGenres):
+    result = defaultdict(list)
+    genre_song_map = {}
+    for genre,songs in songGenres.items():
+        for song in songs:
+            genre_song_map[song] = genre
+    
+    for user,songs in userSongs.items():
+        genre_count = defaultdict(int)
+        max_count = float("-inf")
+        for song in songs:
+            genre_count[genre_song_map[song]]+=1
+            max_count = max(genre_count[genre_song_map[song]],max_count)
+        
+        for genre,count in genre_count.items():
+            if count == max_count:
+                result[user].append(genre)
+    
+    return result
+
+#MEthod2
+
+"""
+1. Format the input map to contain the values as set instead of list
+2. For each user  (Create fav genre map)
+    - For each songs list, we find intersecting songs with songs in genres
+    and store the count of song for each genre
+3. All we need to do is iterate over the fav genre map 
+    - Fetch only the genres that match the maximum frequency of songs per each user
+    - Update the result map for user with the genre of matching maximum count
+4. Return result map
+ """
 def fav_genres(user_songs,song_genres):
     """
     desired stucture - {"genre1":genre_count,"genre2":genre_count}
-    fav_genre_map = {'user':{'s1':2,'s2':2,'s3':4},'user2':{'s1':2,'s2':2,'s3':5}}
+    fav_genre_map = {'user':{'g1':2,'g2':2,'g3':4},'user2':{'g1':2,'g2':2,'g3':5}}
     """
     
     for a in user_songs.keys():
@@ -22,11 +65,11 @@ def fav_genres(user_songs,song_genres):
     for u,s_list in user_songs.items():
         #i = set(s_list)
         fav_genre_map[u] = {}
-        for s_name,genre_s_list in song_genres.items():
+        for genre_name,genre_s_list in song_genres.items():
             #j = set(genre_s_list)
             ij = s_list.intersection(genre_s_list)
             if ij:
-                fav_genre_map[u][s_name] = len(ij)
+                fav_genre_map[u][genre_name] = len(ij)
     print(fav_genre_map)
     
     final_out = {}
