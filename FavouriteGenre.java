@@ -1,3 +1,5 @@
+//time o(usermap count) + o(genreMap count)
+//space o(usermap count)
 class Solution {
     public Map<String, List<String>> favoritegenre(Map<String, List<String>> userMap, Map<String, List<String>> genreMap) {
         HashMap<String, String> songToGenre = new HashMap<>();
