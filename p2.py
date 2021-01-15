@@ -1,3 +1,7 @@
+#Time: O(Users*Songs)
+#Spce: O(Songs)
+
+
 class FavoriteGenre:
 
     def __init__(self):
