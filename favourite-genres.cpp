@@ -1,9 +1,9 @@
-// Time Complexity: 
-// Space Complexity: 
+// Time Complexity: O(kmn)
+// Space Complexity: O(mn)
+// k = #users
+// m = #genres
+// n = average #songs in each genre
 unordered_map<string, vector<string>> favouriteGenres(unordered_map<string, vector<string>>& userSongs, unordered_map<string, vector<string>>& songGenres) {
-    // k = #users
-    // m = #genres
-    // n = average #songs in each genre
     unordered_map<string, vector<string>> result;
     unordered_map<string, string> songToGenre; // space : O(mn)
     for(auto songGenre : songGenres) { // time : O(mn)
@@ -20,7 +20,7 @@ unordered_map<string, vector<string>> favouriteGenres(unordered_map<string, vect
         vector<string> songs = userSong.second;
         // count of songs(fav. songs of user) belonging to each genre
         // key : genre; value : count of songs
-        unordered_map<string, int> count;
+        unordered_map<string, int> count; // space : O(m)
         int maxCnt = 0; // maximum count of songs among all the genres
         // In worst case, user can like all mn songs
         for(auto song : songs) { // O(mn)
