@@ -1,6 +1,11 @@
-// Amazon has Fulfillment Centers in multiple cities within a large geographic region. The cities are arranged on a group that has been divided up like an ordinary Cartesian plane. Each city is located at an integral(x,y) coordinate intersection. City names and locations are given in the form of three arrays: c,x, and y, which are aligned by the index to provide the city name (c[i]), and its coordinates, (x[i],y[i]).
+// Amazon has Fulfillment Centers in multiple cities within a large geographic region. The cities are arranged on a group that has been divided up like an 
+//ordinary Cartesian plane. Each city is located at an integral(x,y) coordinate intersection. 
+//City names and locations are given in the form of three arrays: c,x, and y, which are aligned by the index to provide the 
+//city name (c[i]), and its coordinates, (x[i],y[i]).
 
-// Write an algorithm to determine the name of the nearest city that shares an x or a y coordinate with the queried city. If no cities share an x or y coordinate, return none. If two cities have the same distance to the queried city, q[i], consider the one with an alphabetically smaller name (e.e 'ab' < 'aba' < 'abb') as the closest choice.
+// Write an algorithm to determine the name of the nearest city that shares an x or a y coordinate with the queried city. 
+//If no cities share an x or y coordinate, return none. 
+//If two cities have the same distance to the queried city, q[i], consider the one with an alphabetically smaller name (e.e 'ab' < 'aba' < 'abb') as the closest choice.
 
 // The distance is denoted on a Euclidean plan: the difference in x plus the difference in y.
 
