@@ -1,4 +1,6 @@
 """
+(PLEASE CORRECT ME IF MY TIME AND SPACE ARE WRONG)
+
 Time Complexity : O(mn) for buolding the map and O(kmn) for iterating over users and songs(worst case all songs for all users)
 here m- no. of genres, n- songs in each genre, k- no. of users
 Space Complexity : O(mn)
