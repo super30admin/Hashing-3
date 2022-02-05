@@ -3,6 +3,8 @@ import java.util.Map.Entry;
 public class Main {
 
     public static Map<String, List<String>> favoritegenre(Map<String, List<String>> userMap, Map<String, List<String>> genreMap) {
+        //o(n) time and o(n) space
+
         HashMap<String, String> songToGenre = new HashMap<>();
         for(String genre: genreMap.keySet()){
             List<String> songs = genreMap.get(genre);
