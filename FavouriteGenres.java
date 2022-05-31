@@ -1,3 +1,5 @@
+//TC : O(m*n)
+//SC : O(n). // Here, n = no of users, m = total no. of songs 
 
 public class Main{
     public static Map<String, List<String>> favoritegenre(Map<String, List<String>> userMap,       Map<String, List<String>> genreMap) {
