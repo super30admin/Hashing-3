@@ -1,4 +1,4 @@
-// Time Complexity: O(numberOfSongsInAllGenres) + O(number of users
+// Time Complexity: O(numberOfSongsInAllGenres) + O(number of users * averge number of songs a user listens too)
 // Space Complexity: O(number of songs) + O(number of genres * number of Users)
 // "static void main" must be defined in a public class.
 public class Main {
