@@ -1,0 +1,47 @@
+//TimeComplexity.  O(mn)
+//Spacecomplexity. O(n) (number of songs + no of genres where genres can never be greater than songs)
+
+
+import java.io.IOException;
+import java.util.*;
+import java.util.stream.Collectors;
+
+class Solution {
+    public static HashMap<String, List<String>> favoriteGenres(HashMap<String, List<String>> userMap, HashMap<String, List<String>> genreMap) {
+  
+  
+        HashMap<String,String> songToGenre = new HashMap<>();
+        HashMap<String,Integer> countMap;
+        HashMa<String,List<String>> result = new HashMap<>();
+        
+        //Create Song to Genre Map
+        for(String genre : genreMap.keySet()){
+            
+            for(String Song : genreMap.get(genre)){
+                songToGenre.put(song,genre);
+            }
+        }
+        
+        //CountMap
+         for(String user : userMap.keySet()){
+             
+            countMap = new HashMap<>();
+            result.put(user,new ArrayList<>());
+             int max = 0;
+            for(String song : userMap.get(user)){
+               countMap.put(songToGenre.get(song),countMap.getOrDefault(songToGenre.get(song),0)+1);
+            
+             max = Math.max(max,countMap.get(songToGenre.get(song)));
+            }
+        
+        //Iterate through countmap to determine max count of genre and add it to corresponding user
+        for(String genre : countMap.keySet()){
+            if(max = countMap.get(genre)){
+                result.get(user).add(genre);
+            }
+        }
+         }
+        
+        return result;
+        
+    }
